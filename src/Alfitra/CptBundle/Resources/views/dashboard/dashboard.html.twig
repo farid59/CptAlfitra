@@ -1,0 +1,94 @@
+{% extends "::layout.html.twig" %}
+{% block title %}
+	Dashboard - {{ parent() }}
+{% endblock %}	
+{% block body %}
+
+	<div class="container">
+		<div class="jumbotron">
+			<div class="row">
+				{# <div class="col-md-6">
+					<form class="form-inline" action="metier.php" method="post">
+						<input type="hidden" name="cpt" value="5" />
+						<div class="form-group">
+							<input type="text" class="form-control" name="nb" />
+						</div>
+						<input class="btn btn-info" type="submit" value="Valider" />
+						
+					</form>
+				</div>
+				<div class="col-md-6"> #}
+					<h1>Tableaux de bord AL fitra
+						<a href="" class="btn btn-warning pull-right"><i class="fa fa-refresh"></i> Rafraichir</a>
+					</h1>
+			</div>
+		</div>
+	{# </div> #}
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+			  <div class="panel-heading">
+			    Evenement en cours
+			  </div>
+			  <div class="panel-body">
+			  	<div class="col-md-6">
+				  	Nom de l'événement :<b> {{ evnmt.nom }}</b><br />
+				  	Lieu :<b> {{ evnmt.lieu }}</b>
+			  	</div>
+			  	<div class="col-md-6">
+				  	Date de début :<b>{% if evnmt.debut %}{{ evnmt.debut|date('Y-m-d') }}{% endif %}</b> <br />
+				  	Nombre de participants :<b> {{ nbParticipant }}</b>
+			  	</div>
+			  </div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-primary">
+			  <div class="panel-heading">
+			    Dernier Don
+			  </div>
+			  <div class="panel-body">Il y a {{ duree }}</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-success">
+			  <div class="panel-heading">
+			    Montant total
+			  </div>
+			  <div class="panel-body">{{ donsTotal }} €</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-info">
+			  <div class="panel-heading">
+			    Plus grand don
+			  </div>
+			  <div class="panel-body">{{max}} €</div>
+			</div>
+		</div>
+					<div class="col-md-4">
+			<div class="panel panel-danger">
+			  <div class="panel-heading">
+			    Nombre de donateurs r&eacute;&eacute;ls
+			  </div>
+			  <div class="panel-body">{{nbDons}}</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-warning">
+			  <div class="panel-heading">
+			    Montant total CB
+			  </div>
+			  <div class="panel-body">{{totalCB}}</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    Montant total cash
+			  </div>
+			  <div class="panel-body">{{totalCash}}</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

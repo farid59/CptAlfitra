@@ -1,0 +1,47 @@
+{% extends "::layout.html.twig" %}
+{% block title %}
+	Challenge - {{ parent() }}
+{% endblock %}	
+{% block body %}
+<div style="margin-top:30px"></div>
+<div class="row">
+{% for flash_message in app.session.flashbag.get('notice') %}
+    <div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        {{ flash_message }}
+        <a href="{{ path('remove_don', {'id_don' : app.session.get('don_id')}) }}">Annuler le don</a>
+    </div>
+{% endfor %}
+{% for flash_message in app.session.flashbag.get('warning') %}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        {{ flash_message }}
+        </div>	
+    </div>
+{% endfor %}
+{% for collecteur in collecteurs %}
+  <div class="col-md-3">
+    <div class="thumbnail">
+      <img src="{{ asset('img/avatar.jpg') }}" alt="default">
+      <div class="caption text-center">
+        <h5>{{ collecteur.nom }} <small>{{ collecteur.prenom }}</small></h5>
+        <p>
+			{{form_start(forms[loop.index0])}}
+			{{ form_row(forms[loop.index0].montant) }}
+			{{ form_row(forms[loop.index0].collecteur,{'attr': {'value': collecteur.id}}) }}
+		  	{{ form_widget(forms[loop.index0].Visa, {'attr': {'class': 'btn btn-primary'}}) }}
+		  	{{ form_widget(forms[loop.index0].Cash, {'attr': {'class': 'btn btn-default'}}) }}
+		   	{{ form_end(forms[loop.index0]) }}
+        </p>
+{#         <p>
+        	<a href="{{ asset('donateurs') }}" class="btn btn-primary" role="button">CB</a> 
+        	<a href="{{ asset('donateurs') }}" class="btn btn-default" role="button">Cash</a>
+        </p> #}
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+
+
+{% endblock %}

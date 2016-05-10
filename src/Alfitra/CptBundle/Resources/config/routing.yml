@@ -1,0 +1,28 @@
+alfitra_dashboard:
+    path:     /
+    defaults: { _controller: AlfitraCptBundle:Dashboard:index }
+
+compteur:
+    path:     /compteur
+    defaults: { _controller: AlfitraCptBundle:Compteur:index }
+
+compteur_nb:
+    path:     /compteur-nb
+    defaults: { _controller: AlfitraCptBundle:Compteur:getNb }
+
+challenge:
+    path:     /challenge
+    defaults: { _controller: AlfitraCptBundle:Challenge:index }
+
+donateurs:
+    path:     /donateurs
+    defaults: { _controller: AlfitraCptBundle:Donateur:index }
+
+increment:
+    path:     /increment/{id_evnmt}
+    defaults: { _controller: AlfitraCptBundle:Donateur:increment }
+
+remove_don:
+    path:     /remove/don/{id_don}
+    defaults: { _controller: AlfitraCptBundle:Donateur:remove }
+

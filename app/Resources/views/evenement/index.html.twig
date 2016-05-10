@@ -1,0 +1,58 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <h1>Liste des événements</h1>
+    <div class="pull-right">
+        <a href="{{ path('evenement_new') }}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>Ajouter un événement</a>
+    </div>
+            
+
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Lieu</th>
+                <th>Debut</th>
+                {# <th>Fin</th> #}
+                <th>Donateurs</th>
+                <th>Dons</th>
+                {# <th>Cash</th> #}
+                {# <th>Totalcb</th> #}
+                {# <th>Totalchq</th> #}
+                {# <th>Donmax</th> #}
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for evenement in evenements %}
+            <tr>
+                <td><a href="{{ path('evenement_show', { 'id': evenement.id }) }}">{{ evenement.id }}</a></td>
+                <td>{{ evenement.nom }}</td>
+                <td>{{ evenement.lieu }}</td>
+                <td>{% if evenement.debut %}{{ evenement.debut|date('Y-m-d') }}{% endif %}</td>
+                {# <td>{% if evenement.fin %}{{ evenement.fin|date('Y-m-d H:i:s') }}{% endif %}</td> #}
+                <td>{{ evenement.totalDonateurs }}</td>
+                <td>{{ evenement.totalDons }}</td>
+                {# <td>{{ evenement.totalCash }}</td> #}
+                {# <td>{{ evenement.totalCb }}</td> #}
+                {# <td>{{ evenement.totalChq }}</td> #}
+                {# <td>{{ evenement.donMax }}</td> #}
+                <td>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="{{ path('evenement_show', { 'id': evenement.id }) }}">voir</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}">modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('alfitra_dashboard') }}" class="btn btn-warning">Revenir au dashboard</a>
+</div>
+{% endblock %}

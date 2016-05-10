@@ -1,0 +1,34 @@
+{% extends "::layout.html.twig" %}
+{% block title %}
+	Compteur - {{ parent() }}
+{% endblock %}	
+{% block body %}
+	<div class="col-md-12 text-center cpt">
+		<p class="well lead">Nombre de personnes ayant relevé le challenge</p>
+		<div class="title chiffre" id="result">{{ nb }}</div> 
+	</div>
+
+<div id="abc" data-path="{{path('compteur_nb')}}">
+
+<script type="text/javascript">
+    function refreshCpt(){
+        var path = $("#abc").attr("data-path");
+        $.ajax({
+            type: "GET",
+            // async : true,
+            url: path,
+            cache:false,
+            success: function(data) { 
+                console.log(data);
+                $('#result').html(data);
+            },
+            error : function(data,status,erreur){
+                console.log("erreur "+erreur);
+            }
+
+        });
+    }
+	var timer=setInterval("refreshCpt()", 1000); // Rafraichit le compteur toute les 1s
+</script>
+
+{% endblock %}

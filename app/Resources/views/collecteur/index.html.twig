@@ -1,0 +1,47 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    <div class="container">
+    
+    <h1>Liste des collecteurs</h1>
+    <div class="pull-right">
+        <a href="{{ path('collecteur_new') }}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Ajouter un collecteur</a>
+    </div>
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                {# <th>Image</th> #}
+                <th>Surnom</th>
+                <th>Mail</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for collecteur in collecteurs %}
+            <tr>
+                <td><a href="{{ path('collecteur_show', { 'id': collecteur.id }) }}">{{ collecteur.id }}</a></td>
+                <td>{{ collecteur.nom }}</td>
+                <td>{{ collecteur.prenom }}</td>
+                {# <td>{{ collecteur.image }}</td> #}
+                <td>{{ collecteur.surnom }}</td>
+                <td>{{ collecteur.mail }}</td>
+                <td>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="{{ path('collecteur_show', { 'id': collecteur.id }) }}">voir</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('collecteur_edit', { 'id': collecteur.id }) }}">modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('alfitra_dashboard') }}" class="btn btn-warning">Revenir au dashboard</a>
+    </div>
+{% endblock %}

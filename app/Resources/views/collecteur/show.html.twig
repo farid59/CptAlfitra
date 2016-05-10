@@ -1,0 +1,44 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="col-md-4 col-md-offset-4">
+    <h1>Collecteur</h1>
+
+    <table class="table table-condensed table-striped table-bordered">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ collecteur.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ collecteur.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ collecteur.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ collecteur.image }}</td>
+            </tr>
+            <tr>
+                <th>Surnom</th>
+                <td>{{ collecteur.surnom }}</td>
+            </tr>
+            <tr>
+                <th>Mail</th>
+                <td>{{ collecteur.mail }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+            <a href="{{ path('collecteur_index') }}" class="btn btn-warning">Revenir à la liste</a>
+            <a href="{{ path('collecteur_edit', { 'id': collecteur.id }) }}" class="btn btn-info">Modifier</a>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer" class="btn btn-danger pull-right">
+            {{ form_end(delete_form) }}
+    </div>
+    </div>
+{% endblock %}

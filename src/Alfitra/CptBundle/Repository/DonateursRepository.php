@@ -43,36 +43,51 @@ class DonateursRepository extends \Doctrine\ORM\EntityRepository
         return $query->getQuery()->getSingleScalarResult();
     }
 
-	/**
-	 * @return 
-	 */
-	public function findLastInsert()
-	{
-	    $query = $this->createQueryBuilder('d')
-	        ->select('d')
-	        ->orderBy('d.id', 'desc')
-	        ->setMaxResults(1);
-	    return $query->getQuery()->getOneOrNullResult();
-	}
+  	/**
+  	 * @return 
+  	 */
+  	public function findLastInsert()
+  	{
+  	    $query = $this->createQueryBuilder('d')
+  	        ->select('d')
+  	        ->orderBy('d.id', 'desc')
+  	        ->setMaxResults(1);
+  	   return $query->getQuery()->getOneOrNullResult();
+  	}
 
-	public function getMax($id_evt){
-		$query = $this->createQueryBuilder('d')
-			  ->select('max(d.montant)')
-              ->where('d.evenement = :id_evt')
-              ->setParameter('id_evt', $id_evt);
-        
-        return $query->getQuery()->getSingleScalarResult();
+  	public function getMax($id_evt){
+  		$query = $this->createQueryBuilder('d')
+  			  ->select('max(d.montant)')
+                ->where('d.evenement = :id_evt')
+                ->setParameter('id_evt', $id_evt);
+          
+      return $query->getQuery()->getSingleScalarResult();
 
-	}
+  	}
 
-	public function getNb($id_evt){
-		$query = $this->createQueryBuilder('d')
-			  ->select('count(d.montant)')
-              ->where('d.evenement = :id_evt')
-              ->setParameter('id_evt', $id_evt);
-        
-        return $query->getQuery()->getSingleScalarResult();
+  	public function getNb($id_evt){
+  		$query = $this->createQueryBuilder('d')
+  			  ->select('count(d.montant)')
+                ->where('d.evenement = :id_evt')
+                ->setParameter('id_evt', $id_evt);
+          
+      return $query->getQuery()->getSingleScalarResult();
 
-	}
+  	}
+
+    public function getDonsCollecte($id_Collecteur){
+      $query = $this->createQueryBuilder('d');
+      $query->select('sum(d.montant)')
+            ->where('d.collecteur = :id_Collecteur')
+            ->setParameter('id_Collecteur',$id_Collecteur);
+      return $query->getQuery()->getSingleScalarResult();
+  }
+
+    public function getDonsCollectes(){
+      $query = $this->createQueryBuilder('d');
+      $query->select('sum(d.montant)')
+            ->groupBy('d.collecteur');
+      return $query->getQuery()->getResult();
+  }
 
 }

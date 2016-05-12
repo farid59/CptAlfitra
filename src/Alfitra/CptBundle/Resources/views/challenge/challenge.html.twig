@@ -38,12 +38,15 @@
 		  	{{ form_widget(forms[loop.index0].Cash, {'attr': {'class': 'btn btn-default'}}) }}
 		   	{{ form_end(forms[loop.index0]) }}
         </p>
-{#         <p>
-        	<a href="{{ asset('donateurs') }}" class="btn btn-primary" role="button">CB</a> 
-        	<a href="{{ asset('donateurs') }}" class="btn btn-default" role="button">Cash</a>
-        </p> #}
       </div>
     </div>
+    {% if donsParCollecteur[collecteur.id-1][1] == super %}
+      <span class="notification green">{{ donsParCollecteur[collecteur.id-1][1] }}</span>
+    {% elseif donsParCollecteur[collecteur.id-1][1] == faible %}
+      <span class="notification red">{{ donsParCollecteur[collecteur.id-1][1] }}</span>
+    {% else %}
+      <span class="notification blue">{{ donsParCollecteur[collecteur.id-1][1] }}</span>
+    {% endif %}
   </div>
 {% endfor %}
 </div>

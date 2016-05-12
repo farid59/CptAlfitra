@@ -1,0 +1,15 @@
+/web/bundles/
+/app/config/parameters.yml
+/vendor/
+/bin/
+/composer.phar
+/tests/
+/var/
+*.sublime-project
+*.sublime-workspace
+/web/uploads/*
+src/*/*Bundle/Entity/*.php~
+.DS_Store
+/uploads
+Capfile
+/app/config/deploy.rb

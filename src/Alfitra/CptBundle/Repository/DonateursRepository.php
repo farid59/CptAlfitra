@@ -81,13 +81,25 @@ class DonateursRepository extends \Doctrine\ORM\EntityRepository
             ->where('d.collecteur = :id_Collecteur')
             ->setParameter('id_Collecteur',$id_Collecteur);
       return $query->getQuery()->getSingleScalarResult();
-  }
+    }
 
     public function getDonsCollectes(){
       $query = $this->createQueryBuilder('d');
       $query->select('sum(d.montant)')
             ->groupBy('d.collecteur');
       return $query->getQuery()->getResult();
-  }
+    }
+
+    
+    public function getDonsByDaysAndHours($day) {
+        $query = $this->createQueryBuilder('d');
+        $query->select('sum(d.montant) as nb, SUBSTRING(d.date, 12, 2) as hour, d.moyenDePaiement as type')
+                ->where('SUBSTRING(d.date, 9, 2) = :day')
+                ->groupBy('hour,type')
+                ->orderBy('hour','ASC')
+                ->setParameter('day', $day);
+
+        return $query->getQuery()->getArrayResult();
+    }
 
 }

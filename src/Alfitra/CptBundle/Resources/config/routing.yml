@@ -26,3 +26,8 @@ remove_don:
     path:     /remove/don/{id_don}
     defaults: { _controller: AlfitraCptBundle:Donateur:remove }
 
+chart:
+    path:     /chart
+    defaults: { _controller: AlfitraCptBundle:Challenge:sellsHistory }
+
+

@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  *
  * @ORM\Table(name="image")
  * @ORM\Entity(repositoryClass="Alfitra\CptBundle\Repository\ImageRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Image
 {
@@ -81,6 +82,7 @@ class Image
         $this->alt = $this->file->getClientOriginalName();
     }
 
+
     /**
     * @ORM\PostPersist()
     * @ORM\PostUpdate()
@@ -99,12 +101,13 @@ class Image
             unlink($oldFile);
           }
         }
-
+        
         // On déplace le fichier envoyé dans le répertoire de notre choix
         $this->file->move(
           $this->getUploadRootDir(), // Le répertoire de destination
-          $this->id.'.'.$this->url   // Le nom du fichier à créer, ici « id.extension »
+          $this->alt  // Le nom du fichier à créer, ici « id.extension »
         );
+
     }
 
     /**
@@ -142,7 +145,7 @@ class Image
 
     public function getWebPath()
     {
-        return $this->getUploadDir().'/'.$this->getId().'.'.$this->getUrl();
+        return $this->getUploadDir().'/'.$this->alt;
     }
 
     /**

@@ -5,6 +5,8 @@ namespace Alfitra\CptBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+// use Alfitra\CptBundle\Form\ImageType;
+
 
 class CollecteurType extends AbstractType
 {

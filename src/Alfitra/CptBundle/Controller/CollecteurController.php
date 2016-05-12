@@ -42,12 +42,12 @@ class CollecteurController extends Controller
     public function newAction(Request $request)
     {
         $collecteur = new Collecteur();
+
         $form = $this->createForm('Alfitra\CptBundle\Form\CollecteurType', $collecteur);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $collecteur->setImage(null); //TODO
             $em->persist($collecteur);
             $em->flush();
 
@@ -87,8 +87,10 @@ class CollecteurController extends Controller
         $deleteForm = $this->createDeleteForm($collecteur);
         $editForm = $this->createForm('Alfitra\CptBundle\Form\CollecteurType', $collecteur);
         $editForm->handleRequest($request);
+        // var_dump($request->request->get('collecteur')['image']);die();            
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            // var_dump($collecteur);die();
             $em = $this->getDoctrine()->getManager();
             $em->persist($collecteur);
             $em->flush();

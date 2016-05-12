@@ -20,9 +20,14 @@
     </div>
 {% endfor %}
 {% for collecteur in collecteurs %}
-  <div class="col-md-3">
+  <div class="col-xs-3">
     <div class="thumbnail">
-      <img src="{{ asset('img/avatar.jpg') }}" alt="default">
+      {% if (collecteur.image) %}
+        <img src="{{ asset(collecteur.image.webPath) }}" class="img-cirle img-thumbnail img-responsive" alt="{{ collecteur.nom }} {{ collecteur.prenom }}"
+          style="height: 162px;">
+      {% else %}
+        <img src="{{ asset('img/avatar.jpg') }}" alt="default" class="img-responsive"  >
+      {% endif %}
       <div class="caption text-center">
         <h5>{{ collecteur.nom }} <small>{{ collecteur.prenom }}</small></h5>
         <p>

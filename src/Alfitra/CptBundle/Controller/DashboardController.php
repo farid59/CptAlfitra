@@ -14,8 +14,12 @@ class DashboardController extends Controller
         $donateurs = $em->getRepository('AlfitraCptBundle:Donateurs');
         
         $last = $donateurs->findLastInsert();
-        $duree = $last->getDate()->diff(new \DateTime());
-        $stringDuree = $duree->format('%h heures et %I minutes');
+        if(null != $last){
+            $duree = $last->getDate()->diff(new \DateTime());
+            $stringDuree = $duree->format('%h heures et %I minutes');
+        } else {
+            $stringDuree = 'O dons pour le moment ..';
+        }
         
         $totalDons = $donateurs->getTotalDefis(1);
         $maxDon = $donateurs->getMax(1);
@@ -32,5 +36,27 @@ class DashboardController extends Controller
         	'totalCB' => $totalCb,
         	'totalCash' => $totalCash
         	));
+    }
+
+    public function resetAction(){
+        $em = $this->getDoctrine()->getManager();
+        $donateurs = $em->getRepository('AlfitraCptBundle:Donateurs')->findAll();
+        foreach ($donateurs as $don ) {
+            $em->remove($don);
+        }
+        $evmt = $em->getRepository('AlfitraCptBundle:Evenement')->findAll();
+        foreach ($evmt as $e) {
+            $e->setDebut(new \DateTime());
+            $e->setTotalDonateurs(0);
+            $e->setTotalDons(0);
+            $e->setTotalCash(0);
+            $e->setTotalCb(0);
+            $e->setTotalChq(0);
+            $e->setDonMax(0);
+            $em->merge($e);
+        }
+        $em->flush();
+        return $this->indexAction();
+        
     }
 }

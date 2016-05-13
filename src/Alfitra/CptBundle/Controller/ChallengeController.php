@@ -28,13 +28,19 @@ class ChallengeController extends Controller
             $indice++;
         }
         $donsParCollecteur = $dons_repository->getDonsCollectes();
-        $superCollecteur = $donsParCollecteur[0][1];
-        $faibleCollecteur = $donsParCollecteur[0][1];
-        for ($i=0; $i < count($donsParCollecteur); $i++) { 
-            if ($donsParCollecteur[$i][1] > $superCollecteur) 
-                $superCollecteur = $donsParCollecteur[$i][1];
-            if ($donsParCollecteur[$i][1] < $faibleCollecteur) 
-                $faibleCollecteur = $donsParCollecteur[$i][1];
+        if(count($donsParCollecteur)>0) {
+            dump($donsParCollecteur);
+            $superCollecteur = $donsParCollecteur[0][1];
+            $faibleCollecteur = $donsParCollecteur[0][1];
+            for ($i=0; $i < count($donsParCollecteur); $i++) { 
+                if ($donsParCollecteur[$i][1] > $superCollecteur) 
+                    $superCollecteur = $donsParCollecteur[$i][1];
+                if ($donsParCollecteur[$i][1] < $faibleCollecteur) 
+                    $faibleCollecteur = $donsParCollecteur[$i][1];
+            }
+        } else {
+            $superCollecteur = -1;
+            $faibleCollecteur = -1;
         }
         return $this->render('AlfitraCptBundle:challenge:challenge.html.twig', array(
         	'idEvenement' => 1,

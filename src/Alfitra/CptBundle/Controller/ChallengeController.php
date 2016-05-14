@@ -17,31 +17,48 @@ class ChallengeController extends Controller
         $collecteurs = $em->getRepository('AlfitraCptBundle:Collecteur')->findAll();
         $dons_repository = $em->getRepository('AlfitraCptBundle:Donateurs');
         $forms = array();
+        dump($collecteurs);
 
         $indice = 0;
+        $superCollecteur = -1;
+        $faibleCollecteur = 100000;
+        $donsParCollecteur = array();
         foreach ($collecteurs as $col ) {
             $donateur = new Donateurs();
             $form = $this->createForm('Alfitra\CptBundle\Form\DonateursType', $donateur, array(
                 'action' => $this->generateUrl('increment',array('id_evnmt'=>1))
                 ));
             $forms[$indice] = $form->createView();
-            $indice++;
-        }
-        $donsParCollecteur = $dons_repository->getDonsCollectes();
-        if(count($donsParCollecteur)>0) {
-            dump($donsParCollecteur);
-            $superCollecteur = $donsParCollecteur[0][1];
-            $faibleCollecteur = $donsParCollecteur[0][1];
-            for ($i=0; $i < count($donsParCollecteur); $i++) { 
-                if ($donsParCollecteur[$i][1] > $superCollecteur) 
-                    $superCollecteur = $donsParCollecteur[$i][1];
-                if ($donsParCollecteur[$i][1] < $faibleCollecteur) 
-                    $faibleCollecteur = $donsParCollecteur[$i][1];
+            $montantDon = $dons_repository->getDonsCollecte($col->getId());
+            if(null != $montantDon){
+                array_push($donsParCollecteur, $montantDon);
+                if ($montantDon > $superCollecteur)
+                    $superCollecteur = $montantDon;
+                if ($montantDon < $faibleCollecteur) 
+                    $faibleCollecteur = $montantDon;    
+
             }
-        } else {
-            $superCollecteur = -1;
-            $faibleCollecteur = -1;
+
+            $indice++;
+
         }
+        // $donsParCollecteur = $dons_repository->getDonsCollectes();
+        // if(count($donsParCollecteur)>0) {
+        //     dump($donsParCollecteur);
+        //     $superCollecteur = $donsParCollecteur[0][1];
+        //     $faibleCollecteur = $donsParCollecteur[0][1];
+        //     for ($i=0; $i < count($donsParCollecteur); $i++) { 
+        //         if ($donsParCollecteur[$i][1] > $superCollecteur) 
+        //             $superCollecteur = $donsParCollecteur[$i][1];
+        //         if ($donsParCollecteur[$i][1] < $faibleCollecteur) 
+        //             $faibleCollecteur = $donsParCollecteur[$i][1];
+        //     }
+        // } else {
+        //     $superCollecteur = -1;
+        //     $faibleCollecteur = -1;
+        // }
+        dump($donsParCollecteur);
+
         return $this->render('AlfitraCptBundle:challenge:challenge.html.twig', array(
         	'idEvenement' => 1,
         	'collecteurs' => $collecteurs,
@@ -60,7 +77,6 @@ class ChallengeController extends Controller
         $day = date('d');
         $donByHours = $dons_repository->getDonsByDaysAndHours($day);
         
-        dump($donByHours);
         $dataDonCB = array();
         $dataDonCash = array();
         $dataHours = array();
@@ -114,12 +130,6 @@ class ChallengeController extends Controller
             ),
 
         );
-
-
-
-        // $dates = $dataHours;
-        dump($dataCash);
-        dump($dataCB);
 
         $ob = new Highchart();
         // ID de l'élement de DOM que vous utilisez comme conteneur

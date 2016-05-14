@@ -17,7 +17,7 @@ class ChallengeController extends Controller
         $collecteurs = $em->getRepository('AlfitraCptBundle:Collecteur')->findAll();
         $dons_repository = $em->getRepository('AlfitraCptBundle:Donateurs');
         $forms = array();
-        dump($collecteurs);
+        // dump($collecteurs);
 
         $indice = 0;
         $superCollecteur = -1;
@@ -57,7 +57,7 @@ class ChallengeController extends Controller
         //     $superCollecteur = -1;
         //     $faibleCollecteur = -1;
         // }
-        dump($donsParCollecteur);
+        // dump($donsParCollecteur);
 
         return $this->render('AlfitraCptBundle:challenge:challenge.html.twig', array(
         	'idEvenement' => 1,

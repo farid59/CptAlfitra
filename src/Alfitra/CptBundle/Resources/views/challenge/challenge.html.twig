@@ -41,12 +41,14 @@
       </div>
     </div>
     {% if super > -1 %}
-      {% if donsParCollecteur[collecteur.id-1] == super %}
-        <span class="notification green">{{ donsParCollecteur[collecteur.id-1] }}</span>
-      {% elseif donsParCollecteur[collecteur.id-1] == faible %}
-        <span class="notification red">{{ donsParCollecteur[collecteur.id-1] }}</span>
-      {% else %}
-        <span class="notification blue">{{ donsParCollecteur[collecteur.id-1] }}</span>
+      {% if (donsParCollecteur[collecteur.id-1] is defined ) %}
+        {% if donsParCollecteur[collecteur.id-1] == super %}
+          <span class="notification green">{{ donsParCollecteur[collecteur.id-1] }}</span>
+        {% elseif donsParCollecteur[collecteur.id-1] == faible %}
+          <span class="notification red">{{ donsParCollecteur[collecteur.id-1] }}</span>
+        {% else %}
+          <span class="notification blue">{{ donsParCollecteur[collecteur.id-1] }}</span>
+        {% endif %}
       {% endif %}
     {% endif %}
   </div>

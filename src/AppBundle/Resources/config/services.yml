@@ -1,0 +1,4 @@
+services:
+#    alfitra_cpt.example:
+#        class: Alfitra\CptBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

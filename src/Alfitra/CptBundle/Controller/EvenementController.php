@@ -28,7 +28,7 @@ class EvenementController extends Controller
 
         $evenements = $em->getRepository('AlfitraCptBundle:Evenement')->findAll();
 
-        return $this->render('evenement/index.html.twig', array(
+        return $this->render('AlfitraCptBundle:evenement:index.html.twig', array(
             'evenements' => $evenements,
         ));
     }
@@ -53,7 +53,7 @@ class EvenementController extends Controller
             return $this->redirectToRoute('evenement_show', array('id' => $evenement->getId()));
         }
 
-        return $this->render('evenement/new.html.twig', array(
+        return $this->render('AlfitraCptBundle:evenement:new.html.twig', array(
             'evenement' => $evenement,
             'form' => $form->createView(),
         ));
@@ -69,7 +69,7 @@ class EvenementController extends Controller
     {
         $deleteForm = $this->createDeleteForm($evenement);
 
-        return $this->render('evenement/show.html.twig', array(
+        return $this->render('AlfitraCptBundle:evenement:show.html.twig', array(
             'evenement' => $evenement,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -95,7 +95,7 @@ class EvenementController extends Controller
             return $this->redirectToRoute('evenement_edit', array('id' => $evenement->getId()));
         }
 
-        return $this->render('evenement/edit.html.twig', array(
+        return $this->render('AlfitraCptBundle:evenement:edit.html.twig', array(
             'evenement' => $evenement,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

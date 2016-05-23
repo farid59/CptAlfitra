@@ -1,3 +1,11 @@
+alfitra_cpt_evenement:
+    resource: "@AlfitraCptBundle/Controller/EvenementController.php"
+    type:     annotation
+
+alfitra_cpt_collecteur:
+    resource: "@AlfitraCptBundle/Controller/CollecteurController.php"
+    type:     annotation
+
 alfitra_dashboard:
     path:     /
     defaults: { _controller: AlfitraCptBundle:Dashboard:index }

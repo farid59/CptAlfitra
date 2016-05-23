@@ -16,7 +16,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Alfitra\CptBundle\AlfitraCptBundle(),
-            new AppBundle\AppBundle(),
+            new UserBundle\UserBundle(),
             new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
             new Ob\HighchartsBundle\ObHighchartsBundle(),
             new FOS\UserBundle\FOSUserBundle(),

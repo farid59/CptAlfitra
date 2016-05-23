@@ -28,7 +28,7 @@ class CollecteurController extends Controller
 
         $collecteurs = $em->getRepository('AlfitraCptBundle:Collecteur')->findAll();
 
-        return $this->render('collecteur/index.html.twig', array(
+        return $this->render('AlfitraCptBundle:collecteur:index.html.twig', array(
             'collecteurs' => $collecteurs,
         ));
     }
@@ -54,7 +54,7 @@ class CollecteurController extends Controller
             return $this->redirectToRoute('collecteur_show', array('id' => $collecteur->getId()));
         }
 
-        return $this->render('collecteur/new.html.twig', array(
+        return $this->render('AlfitraCptBundle:collecteur:new.html.twig', array(
             'collecteur' => $collecteur,
             'form' => $form->createView(),
         ));
@@ -70,7 +70,7 @@ class CollecteurController extends Controller
     {
         $deleteForm = $this->createDeleteForm($collecteur);
 
-        return $this->render('collecteur/show.html.twig', array(
+        return $this->render('AlfitraCptBundle:collecteur:show.html.twig', array(
             'collecteur' => $collecteur,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -98,7 +98,7 @@ class CollecteurController extends Controller
             return $this->redirectToRoute('collecteur_edit', array('id' => $collecteur->getId()));
         }
 
-        return $this->render('collecteur/edit.html.twig', array(
+        return $this->render('AlfitraCptBundle:collecteur:edit.html.twig', array(
             'collecteur' => $collecteur,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

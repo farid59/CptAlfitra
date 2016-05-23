@@ -1,10 +1,6 @@
-alfitra_cpt_evenement:
-    resource: "@AlfitraCptBundle/Controller/EvenementController.php"
-    type:     annotation
-
-alfitra_cpt_collecteur:
-    resource: "@AlfitraCptBundle/Controller/CollecteurController.php"
-    type:     annotation
+# ==============================================================================
+# App Compteur
+# ==============================================================================
 
 alfitra_cpt:
     resource: "@AlfitraCptBundle/Resources/config/routing.yml"

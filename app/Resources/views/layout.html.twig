@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+{# <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Alfitra{% endblock %}</title>
+        <title>{% block title %}Dashboard{% endblock %}</title>
         {% block stylesheets %}
             <!-- Latest compiled and minified CSS -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -16,40 +16,41 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-    <div id="wrapper" class="active">
-      <div id="sidebar-wrapper">
-        <ul id="sidebar_menu" class="sidebar-nav">
-             <li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
-        </ul>
-        <ul class="sidebar-nav" id="sidebar">     
-          <li><a href="{{path('compteur')}}">Compteur &nbsp;<i class="fa fa-dashboard fa-lg"></i></a></li>
-          <li><a href="{{path('alfitra_dashboard')}}">Dashboard <i class="fa fa-bar-chart-o fa-lg"></i></a></li>
-          <li><a href="{{path('challenge')}}">Challenge &nbsp;&nbsp;<i class="fa fa-picture-o fa-lg"></i></a></li>
-          <li><a href="{{path('evenement_index')}}">Evénement <i class="fa fa-folder-o fa-lg"></i></a></li>
-          <li><a href="{{path('chart')}}">Donateurs &nbsp;<i class="fa fa-align-justify fa-lg"></i></a></li>
-          <li><a href="{{path('collecteur_index')}}">Collecteurs<i class="fa fa-users fa-lg"></i></a></li>
-          {# <li><a>Impots <i class="fa fa-edit"></i></a></li> #}
-        </ul>
-      </div>  
-      <!-- Page content -->
-      <div id="page-content-wrapper">
-        <div class="page-content inset">
-            <div class="row">
-              {% block body %}
-              {% endblock %}       
-            </div>
-        </div>
-      </div>
-  
-    </div>
-    {% block javascripts %}
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>  
-      <script type="text/javascript">
-          $("#menu-toggle").click(function(e) {
-                  e.preventDefault();
-                  $("#wrapper").toggleClass("active");
-          });
-      </script>
-    {% endblock %}
-    </body>
-</html>
+
+<nav class = "navbar navbar-inverse" role = "navigation">
+   
+   <div class = "navbar-header">
+      <a class = "navbar-brand" href = "#">TutorialsPoint</a>
+   </div>
+   
+   <div>
+      <ul class = "nav navbar-nav">
+         <li class = "active"><a href = "#">iOS</a></li>
+         <li><a href = "#">SVN</a></li>
+         <li class = "dropdown">
+            <a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">
+               Java
+               <b class = "caret"></b>
+            </a>
+            
+            <ul class = "dropdown-menu">
+               <li><a href = "#">jmeter</a></li>
+               <li><a href = "#">EJB</a></li>
+               <li><a href = "#">Jasper Report</a></li>
+               
+               <li class = "divider"></li>
+               <li><a href = "#">Separated link</a></li>
+               
+               <li class = "divider"></li>
+               <li><a href = "#">One more separated link</a></li>
+            </ul>
+            
+         </li>
+      </ul>
+   </div>
+   
+</nav>
+{% block fullbody %}
+{% endblock %}  
+</body>
+</html> #}

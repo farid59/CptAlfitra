@@ -2,10 +2,9 @@
 {% block body %}
 	    <div class="container">
     <h1>Liste des dons</h1>
-    <h3>{% if is_granted("ROLE_USER") %}
-        Hello {{ app.user.username }}
-    {% endif %}</h3>
-
+<h3>{% if is_granted("ROLE_USER") %}
+    Hello {{ app.user.username }}
+{% endif %}</h3>
     <div class="pull-right">
         <a href="{{ path('formulaire_new') }}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Ajouter un don</a>
     </div>
@@ -15,14 +14,12 @@
         <thead>
             <tr>
                 <th>Civilité</th>
-                <th>Nom</th>
-                <th>Prenom</th>
+                <th>Nom et Prénom</th>
                 <th>Montant</th>
                 <th>Mode</th>
-                <th>Anonyme</th>
                 <th>Reçu fiscal</th>
                 <th>Téléphone</th>
-                <th>Annoncé</th>
+                <th>Posté par</th>
             </tr>
         </thead>
         <tbody>
@@ -30,14 +27,12 @@
             <tr>
                 {# <td><a href="{{ path('collecteur_show', { 'id': collecteur.id }) }}">{{ collecteur.id }}</a></td> #}
                 <td>{{ donateur.civilite }}</td>
-                <td>{{ donateur.nom }}</td>
-                <td>{{ donateur.prenom }}</td>
+                <td>{{ donateur.nom }} {{ donateur.prenom }}</td>
                 <td>{{ donateur.montant }}</td>
                 <td>{{ donateur.modePaiement }}</td>
-                <td>{{ donateur.anonyme }}</td>
                 <td>{{ donateur.recuFiscal }}</td>
                 <td>{{ donateur.telephone }}</td>
-                <td>{{ donateur.announced }}</td>
+                <td>{{ donateur.postedBy }}</td>
                 {# <td>
                     <ul class="list-unstyled">
                         <li>

@@ -113,6 +113,13 @@ class Formulaire
      */
     protected $date;
 
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="postedby", type="string")
+     */
+    protected $postedBy;
+
 
     public function __construct(){
         $this->date = new \Datetime();
@@ -439,5 +446,29 @@ class Formulaire
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set postedBy
+     *
+     * @param string $postedBy
+     *
+     * @return Formulaire
+     */
+    public function setPostedBy($postedBy)
+    {
+        $this->postedBy = $postedBy;
+
+        return $this;
+    }
+
+    /**
+     * Get postedBy
+     *
+     * @return string
+     */
+    public function getPostedBy()
+    {
+        return $this->postedBy;
     }
 }

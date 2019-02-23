@@ -12,7 +12,7 @@ use Alfitra\CptBundle\Form\FormulaireType;
 /**
  * Formulaire controller.
  *
- * @Route("/")
+ * 
  */
 class FormulaireController extends Controller
 {
@@ -61,9 +61,12 @@ class FormulaireController extends Controller
     public function newAction(Request $request)
     {
         $formulaire = new Formulaire();
-        $form = $this->createForm('Alfitra\CptBundle\Form\FormulaireType', $formulaire);
+        $postedBy = $this->getUser()->getUsername();
+        
+        $form = $this->createForm(FormulaireType::class, $formulaire, array(
+            'postedBy' => $postedBy,
+        ));
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($formulaire);
@@ -72,6 +75,7 @@ class FormulaireController extends Controller
             return $this->redirectToRoute('formulaire_new');
         }
 
+        
         return $this->render('AlfitraCptBundle:formulaire:new.html.twig', array(
             'formulaire' => $formulaire,
             'form' => $form->createView(),

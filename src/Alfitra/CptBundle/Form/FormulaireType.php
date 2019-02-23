@@ -7,9 +7,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class FormulaireType extends AbstractType
 {
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -17,12 +19,9 @@ class FormulaireType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            // ->add('civilite',  ChoiceType::class, array(
-            //     'choices'  => [
-            //         'Frère' => 'Frere',
-            //         'Soeur' => 'Soeur',
-            //         'Enfant' => 'Enfant',
-            //     ]))
+        ->add('postedBy',       HiddenType::class, array(
+            'data' => $options['postedBy']
+            ))
         ->add('civilite', ChoiceType::class, array('expanded' => true, 
                 'choices'  => [
                     'Frère' => 'Frere',
@@ -56,7 +55,8 @@ class FormulaireType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Alfitra\CptBundle\Entity\Formulaire'
+            'data_class' => 'Alfitra\CptBundle\Entity\Formulaire',
+            'postedBy' => null,
         ));
     }
 }

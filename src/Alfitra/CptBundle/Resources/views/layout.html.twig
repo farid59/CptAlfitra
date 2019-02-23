@@ -22,18 +22,23 @@
              <li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
         </ul>
         <ul class="sidebar-nav" id="sidebar">     
-          <li><a href="{{path('compteur')}}">Compteur &nbsp;<i class="fa fa-dashboard fa-lg"></i></a></li>
+          {# <li><a href="{{path('compteur')}}">Compteur &nbsp;<i class="fa fa-dashboard fa-lg"></i></a></li>
           <li><a href="{{path('alfitra_dashboard')}}">Dashboard <i class="fa fa-bar-chart-o fa-lg"></i></a></li>
           <li><a href="{{path('challenge')}}">Challenge &nbsp;&nbsp;<i class="fa fa-picture-o fa-lg"></i></a></li>
           <li><a href="{{path('evenement_index')}}">Evénement <i class="fa fa-folder-o fa-lg"></i></a></li>
           <li><a href="{{path('chart')}}">Donateurs &nbsp;<i class="fa fa-align-justify fa-lg"></i></a></li>
-          <li><a href="{{path('collecteur_index')}}">Collecteurs<i class="fa fa-users fa-lg"></i></a></li>
+          <li><a href="{{path('collecteur_index')}}">Collecteurs<i class="fa fa-users fa-lg"></i></a></li> #}
+          <li><a href="{{path('formulaire_new')}}">Formulaire<i class="fa fa-list fa-lg"></i></a></li>
+          <li><a href="{{path('formulaire_annonce')}}">Annonce<i class="fa fa-bullhorn fa-lg"></i></a></li>
+          <li><a href="{{path('ecran_index')}}">Ecran<i class="fa fa-bar-chart-o fa-lg"></i></a></li>
         </ul>
       </div>  
       <!-- Page content -->
       <div id="page-content-wrapper">
         <div class="page-content inset">
             <div class="row">
+              <div id="fullscreen"><i class="fa fa-arrows-alt"></i></div>
+              <div id="openSidebar"><i class="fa fa-angle-right"></i></div>
               {% block body %}
               {% endblock %}       
             </div>
@@ -44,10 +49,24 @@
     {% block javascripts %}
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>  
       <script type="text/javascript">
+        $("#openSidebar").hide();
+
           $("#menu-toggle").click(function(e) {
                   e.preventDefault();
                   $("#wrapper").toggleClass("active");
           });
+            $("#fullscreen").click(function() {
+            $("#sidebar-wrapper").hide();
+            $(this).hide();
+            $("#openSidebar").show();
+            $("#wrapper").css("padding-left","0");
+          })
+          $("#openSidebar").click(function() {
+            $("#sidebar-wrapper").show();
+            $(this).hide();
+            $("#fullscreen").show();
+            $("#wrapper").removeAttr("style");
+          })
       </script>
     {% endblock %}
     </body>

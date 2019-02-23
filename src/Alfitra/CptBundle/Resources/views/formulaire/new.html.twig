@@ -1,0 +1,24 @@
+{% extends "AlfitraCptBundle::layout.html.twig" %}
+
+{% block body %}
+    <div class="container">
+    <h1 class="text-center">Ajouter un nouveau don</h1>
+    {% for flash_message in app.session.flashbag.get('notice') %}
+        <div class="col-md-3 col-md-offset-9">
+            <div class="alert alert-warning">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {{ flash_message }}
+            </div>
+        </div>
+    {% endfor %}
+    <div class="col-md-6 col-md-offset-3">
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <a href="{{ path('formulaire_index') }}" class="btn btn-warning">Revenir à la liste</a>
+        <input type="submit" value="Créer"  class="btn btn-success"/>
+    {{ form_end(form) }}
+
+    </div>
+    </div>
+
+{% endblock %}

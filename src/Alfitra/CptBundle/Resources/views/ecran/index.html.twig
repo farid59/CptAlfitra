@@ -1,0 +1,73 @@
+{% extends "AlfitraCptBundle::layout.html.twig" %}
+{% block body %}
+
+
+
+<div class="row text-center">
+	<img src="{{ asset('img/logo.png') }}" alt="default" class="img-responsve">
+
+	<div class="col-md-6 col-md-offset-3" style="font-size:150px;margin-top:50px">
+		<a href="#" class="thumbnail" id="result">
+			{{ don }}
+		</a>
+	</div>
+</div>
+{# <hr>
+<div class="row text-center">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="col-md-4" style="font-size:50px">
+			<a href="#" class="thumbnail" id="cash">
+				{{ don }}
+			</a>
+		</div>
+		<div class="col-md-4" style="font-size:50px">
+			<a href="#" class="thumbnail" id="promesse">
+				{{ don }}
+			</a>
+		</div>
+		<div class="col-md-4" style="font-size:50px">
+			<a href="#" class="thumbnail" id="mensuel">
+				{{ don }}
+			</a>
+		</div>
+	</div>
+	<div class="col-md-8 col-md-offset-2">
+		<div class="col-md-4">
+			<b><a href="#" class="thumbnail" id="result">Direct</a></b>
+		</div>
+		<div class="col-md-4">
+			<b><a href="#" class="thumbnail" id="result">Promesse</a></b>
+		</div>
+		<div class="col-md-4">
+			<b><a href="#" class="thumbnail" id="result">Mensuel</a></b>
+		</div>
+	</div>
+</div> #}
+
+
+<div id="abc" data-path="{{path('ecran_total')}}">
+
+<script type="text/javascript">
+    function refreshCpt(){
+        var path = $("#abc").attr("data-path");
+        $.ajax({
+            type: "GET",
+            url: path,
+            cache:false,
+            success: function(data) {
+            	console.log(data);
+                $('#result').html(data.don);
+                // $('#mensuel').html(data.mensuel);
+                // $('#promesse').html(data.promesse);
+                // $('#cash').html(data.cash);
+            },
+            error : function(data,status,erreur){
+                console.log("erreur "+erreur);
+            }
+
+        });
+    }
+	var timer=setInterval("refreshCpt()", 1000); // Rafraichit le compteur toute les 1s
+
+</script>
+{% endblock %}

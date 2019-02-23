@@ -1,3 +1,7 @@
+# alfitra_cpt_formulaire:
+#     resource: "@AlfitraCptBundle/Controller/FormulaireController.php"
+#     type:     annotation
+
 # ==============================================================================
 # App Compteur
 # ==============================================================================

@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Formulaire</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ formulaire.id }}</td>
+            </tr>
+            <tr>
+                <th>Civilite</th>
+                <td>{{ formulaire.civilite }}</td>
+            </tr>
+            <tr>
+                <th>Montant</th>
+                <td>{{ formulaire.montant }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ formulaire.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ formulaire.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Modepaiement</th>
+                <td>{{ formulaire.modePaiement }}</td>
+            </tr>
+            <tr>
+                <th>Anonyme</th>
+                <td>{% if formulaire.anonyme %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Recufiscal</th>
+                <td>{% if formulaire.recuFiscal %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ formulaire.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Invocationpourqui</th>
+                <td>{{ formulaire.invocationPourqui }}</td>
+            </tr>
+            <tr>
+                <th>Invocationpourquoi</th>
+                <td>{{ formulaire.invocationPourquoi }}</td>
+            </tr>
+            <tr>
+                <th>Invocationdetails</th>
+                <td>{{ formulaire.invocationDetails }}</td>
+            </tr>
+            <tr>
+                <th>Announced</th>
+                <td>{% if formulaire.announced %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('formulaire_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('formulaire_edit', { 'id': formulaire.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

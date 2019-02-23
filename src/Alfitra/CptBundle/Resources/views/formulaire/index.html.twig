@@ -1,0 +1,55 @@
+{% extends "AlfitraCptBundle::layout.html.twig" %}
+{% block body %}
+	    <div class="container">
+    <h1>Liste des dons</h1>
+
+    <div class="pull-right">
+        <a href="{{ path('formulaire_new') }}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Ajouter un don</a>
+    </div>
+    <div class="container">
+    
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>Civilité</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Montant</th>
+                <th>Mode</th>
+                <th>Anonyme</th>
+                <th>Reçu fiscal</th>
+                <th>Téléphone</th>
+                <th>Annoncé</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for donateur in donateurs %}
+            <tr>
+                {# <td><a href="{{ path('collecteur_show', { 'id': collecteur.id }) }}">{{ collecteur.id }}</a></td> #}
+                <td>{{ donateur.civilite }}</td>
+                <td>{{ donateur.nom }}</td>
+                <td>{{ donateur.prenom }}</td>
+                <td>{{ donateur.montant }}</td>
+                <td>{{ donateur.modePaiement }}</td>
+                <td>{{ donateur.anonyme }}</td>
+                <td>{{ donateur.recuFiscal }}</td>
+                <td>{{ donateur.telephone }}</td>
+                <td>{{ donateur.announced }}</td>
+                {# <td>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="{{ path('formulaire_show', { 'id': collecteur.id }) }}">voir</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('formulaire_edit', { 'id': collecteur.id }) }}">modifier</a>
+                        </li>
+                    </ul>
+                </td> #}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('alfitra_dashboard') }}" class="btn btn-warning">Revenir au dashboard</a>
+    </div>
+</div>
+{% endblock %}

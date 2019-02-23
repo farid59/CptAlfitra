@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Formulaire list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Civilite</th>
+                <th>Montant</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Modepaiement</th>
+                <th>Anonyme</th>
+                <th>Recufiscal</th>
+                <th>Telephone</th>
+                <th>Invocationpourqui</th>
+                <th>Invocationpourquoi</th>
+                <th>Invocationdetails</th>
+                <th>Announced</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for formulaire in formulaires %}
+            <tr>
+                <td><a href="{{ path('formulaire_show', { 'id': formulaire.id }) }}">{{ formulaire.id }}</a></td>
+                <td>{{ formulaire.civilite }}</td>
+                <td>{{ formulaire.montant }}</td>
+                <td>{{ formulaire.nom }}</td>
+                <td>{{ formulaire.prenom }}</td>
+                <td>{{ formulaire.modePaiement }}</td>
+                <td>{% if formulaire.anonyme %}Yes{% else %}No{% endif %}</td>
+                <td>{% if formulaire.recuFiscal %}Yes{% else %}No{% endif %}</td>
+                <td>{{ formulaire.telephone }}</td>
+                <td>{{ formulaire.invocationPourqui }}</td>
+                <td>{{ formulaire.invocationPourquoi }}</td>
+                <td>{{ formulaire.invocationDetails }}</td>
+                <td>{% if formulaire.announced %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('formulaire_show', { 'id': formulaire.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('formulaire_edit', { 'id': formulaire.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('formulaire_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

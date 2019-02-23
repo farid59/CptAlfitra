@@ -50,4 +50,3 @@ chart:
 #     path:     /Bourget2016reset
 #     defaults: { _controller: AlfitraCptBundle:Dashboard:reset }
 
-

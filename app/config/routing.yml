@@ -8,7 +8,7 @@
 
 alfitra_cpt:
     resource: "@AlfitraCptBundle/Resources/config/routing.yml"
-    prefix:   /compteur
+    prefix:   /
 
 
 # ==============================================================================

@@ -31,6 +31,11 @@
           <li><a href="{{path('formulaire_new')}}">Formulaire<i class="fa fa-list fa-lg"></i></a></li>
           <li><a href="{{path('formulaire_annonce')}}">Annonce<i class="fa fa-bullhorn fa-lg"></i></a></li>
           <li><a href="{{path('ecran_index')}}">Ecran<i class="fa fa-bar-chart-o fa-lg"></i></a></li>
+          <li>
+            {% if is_granted("ROLE") %}
+              Hi {{ app.user.username }}
+            {% endif %}
+          </li>
         </ul>
       </div>  
       <!-- Page content -->

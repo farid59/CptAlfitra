@@ -12,7 +12,7 @@ use Alfitra\CptBundle\Form\FormulaireType;
 /**
  * Formulaire controller.
  *
- * @Route("/formulaire")
+ * @Route("/")
  */
 class FormulaireController extends Controller
 {
@@ -78,21 +78,21 @@ class FormulaireController extends Controller
         ));
     }
 
-    /**
-     * Finds and displays a Formulaire entity.
-     *
-     * @Route("/{id}", name="formulaire_show")
-     * @Method("GET")
-     */
-    public function showAction(Formulaire $formulaire)
-    {
-        $deleteForm = $this->createDeleteForm($formulaire);
+    // /**
+    //  * Finds and displays a Formulaire entity.
+    //  *
+    //  * @Route("/{id}", name="formulaire_show")
+    //  * @Method("GET")
+    //  */
+    // public function showAction(Formulaire $formulaire)
+    // {
+    //     $deleteForm = $this->createDeleteForm($formulaire);
 
-        return $this->render('AlfitraCptBundle:formulaire:show.html.twig', array(
-            'formulaire' => $formulaire,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+    //     return $this->render('AlfitraCptBundle:formulaire:show.html.twig', array(
+    //         'formulaire' => $formulaire,
+    //         'delete_form' => $deleteForm->createView(),
+    //     ));
+    // }
 
     /**
      * Displays a form to edit an existing Formulaire entity.

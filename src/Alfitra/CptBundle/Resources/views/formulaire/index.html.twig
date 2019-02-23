@@ -2,6 +2,9 @@
 {% block body %}
 	    <div class="container">
     <h1>Liste des dons</h1>
+    <h3>{% if is_granted("ROLE_USER") %}
+        Hello {{ app.user.username }}
+    {% endif %}</h3>
 
     <div class="pull-right">
         <a href="{{ path('formulaire_new') }}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Ajouter un don</a>
